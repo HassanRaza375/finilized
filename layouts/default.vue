@@ -40,7 +40,19 @@
       <!-- <v-btn icon @click.stop="fixed = !fixed">
         <v-icon>mdi-minus</v-icon>
       </v-btn> -->
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title>
+        <v-badge
+          v-if="Counter > 0"
+          class="mt-3"
+          :content="Counter"
+          color="green"
+          overlap
+        >
+          <v-btn icon to="/" small
+            ><v-icon small>mdi-bell-ring</v-icon></v-btn
+          > </v-badge
+        ><span class="ml-2">{{ title }}</span></v-toolbar-title
+      >
       <v-spacer />
       <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-menu</v-icon>
@@ -106,12 +118,22 @@ export default {
           title: "Favourite",
           to: "/favourite",
         },
+        {
+          icon: "mdi-counter",
+          title: "Counter",
+          to: "/counter",
+        },
       ],
       miniVariant: true,
       right: true,
       rightDrawer: false,
       title: "Finilized",
     };
+  },
+  computed: {
+    Counter() {
+      return this.$store.getters.LoadedCounter;
+    },
   },
   mounted() {
     const obj = [
