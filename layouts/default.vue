@@ -123,6 +123,11 @@ export default {
           title: "Counter",
           to: "/counter",
         },
+        {
+          icon: "mdi-cog",
+          title: "InfinitScroll",
+          to: "/PostsScroll",
+        },
       ],
       miniVariant: true,
       right: true,
