@@ -4,11 +4,11 @@
     infinite-scroll-disabled="busy"
     infinite-scroll-distance="10"
   >
-    <v-row>
+    <v-row class="justify-center">
       <v-col cols="4" v-for="item in Items" :key="item.Id">
         <v-card hover>
           <v-img
-            height="250"
+            height="150"
             :src="require(`~/assets/images/${item.url || '2.jpg'}`)"
           >
             <v-card-title class="white--text">Tech Posts</v-card-title>
@@ -18,13 +18,13 @@
                 Recusandae aspernatur hic eligendi ut?
               </h5>
             </v-card-text>
-            <v-card-actions class="mt-10">
+            <!-- <v-card-actions class="mt-10">
               <v-spacer></v-spacer>
               <v-btn depressed color="info">Favourite</v-btn>
               <v-btn :to="`/posts/${item.Id}`" depressed color="primary"
                 >Visit</v-btn
               >
-            </v-card-actions>
+            </v-card-actions> -->
           </v-img>
         </v-card>
       </v-col>
@@ -42,6 +42,18 @@ export default {
         { Id: "3", url: "3.jpg" },
         { Id: "4", url: "4.jpg" },
         { Id: "5", url: "1.JPG" },
+        { Id: "6", url: "g.jpg" },
+        { Id: "7", url: "2.jpg" },
+        { Id: "8", url: "3.jpg" },
+        { Id: "9", url: "4.jpg" },
+        { Id: "10", url: "1.JPG" },
+        { Id: "11", url: "g.jpg" },
+        { Id: "12", url: "2.jpg" },
+        { Id: "13", url: "3.jpg" },
+        { Id: "14", url: "4.jpg" },
+        { Id: "15", url: "1.JPG" },
+        { Id: "16", url: "g.jpg" },
+        { Id: "17", url: "2.jpg" },
       ],
       busy: false,
       page: 0,
