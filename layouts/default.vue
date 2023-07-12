@@ -128,6 +128,11 @@ export default {
           title: "InfinitScroll",
           to: "/PostsScroll",
         },
+        {
+          icon: "mdi-list-box-outline",
+          title: "Todo list",
+          to: "/ToDoList",
+        },
       ],
       miniVariant: true,
       right: true,

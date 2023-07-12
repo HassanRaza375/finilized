@@ -60,12 +60,12 @@ export default {
         page: this.page++,
         pageSize: this.page * 10,
       };
-      if (data.pageSize >= 100) {
+      if (data.pageSize >= 1000) {
         return;
       }
       // const res1 = await this.$axios.$get("order/");
       const res = await this.$axios.$get("infinie/scroll", {
-        body: {
+        params: {
           page: this.page++,
           pageSize: this.page * 10,
         },

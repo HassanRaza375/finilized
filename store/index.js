@@ -1,13 +1,17 @@
 export const state = () => ({
   LoadedPosts: [],
+  TODOS: [],
   counter: 0,
 });
 export const mutations = {
+  payload(state, load) {
+    debugger;
+    state[load.Name] = load.Value;
+  },
   setposts(state, posts) {
     state.LoadedPosts = posts;
   },
   Increase(state, value) {
-    debugger
     if (value === "plus") {
       state.counter++;
     } else {
@@ -17,12 +21,13 @@ export const mutations = {
 };
 export const actions = {
   setposts(context, posts) {
-    debugger;
     context.commit("setposts", posts);
   },
   setCounter(context, value) {
     context.commit("Increase", value);
-    debugger;
+  },
+  payload(context, value) {
+    context.commit("payload", value);
   },
 };
 export const getters = {
