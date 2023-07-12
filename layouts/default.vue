@@ -58,7 +58,7 @@
         <v-icon>mdi-menu</v-icon>
       </v-btn> -->
     </v-app-bar>
-    <v-main>
+    <v-main class="bg">
       <v-container fluid>
         <Nuxt />
       </v-container>
@@ -178,5 +178,10 @@ export default {
 <style scoped>
 .theme--light.v-app-bar.v-toolbar.v-sheet {
   background-color: #fff;
+}
+.bg {
+  background-image: url("~/assets/images/img.jpg");
+  background-size: cover;
+  background-attachment: fixed;
 }
 </style>

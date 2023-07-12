@@ -44,12 +44,11 @@ export default {
     theme: {
       themes: {
         light: {
-          primary: "#ff5722",
+          primary: "#2C303B",
           warning: "#F77F00",
           accent: "#006d77",
           info: "#3DDCCE",
           success: "#006400",
-          main: "#ff5722",
         },
       },
     },

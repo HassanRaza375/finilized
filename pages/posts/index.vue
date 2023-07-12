@@ -9,6 +9,22 @@
         >
       </v-card-actions>
     </v-card>
+    <v-card dense class="mb-3">
+      <v-card-text>
+        <v-row dense>
+          <v-col cols="12">
+            <v-text-field
+              v-model="Item.val"
+              label="Search"
+              outlined
+              dense
+              hide-details="auto"
+              append-icon="mdi-magnify"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
     <PostsList />
     <PostsAddNewPosts v-if="CreatNew" @close="CreatNew = !CreatNew" />
   </div>
@@ -18,6 +34,7 @@
 export default {
   data() {
     return {
+      Item: {},
       CreatNew: false,
     };
   },
