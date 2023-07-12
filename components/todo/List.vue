@@ -6,7 +6,7 @@
     transition="dialog-transition"
   >
     <v-card dense>
-      <v-card-title> New Todo </v-card-title>
+      <v-card-title>{{ item ? "Edit Todo" : "New Todo" }} </v-card-title>
       <v-card-text>
         <v-row dense>
           <v-col cols="6"
@@ -48,7 +48,11 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn x-small depressed color="success" @click="$emit('getval', Item)"
+        <v-btn
+          x-small
+          depressed
+          color="success"
+          @click="$emit(item ? 'saveedit' : 'getval', Item)"
           >save</v-btn
         >
         <v-btn x-small depressed color="success" @click="$emit('close')"
@@ -60,11 +64,20 @@
 </template>
 <script>
 export default {
+  props: {
+    item: {
+      type: Object,
+      default: () => {},
+    },
+  },
   data() {
     return {
       valid: true,
       Item: {},
     };
+  },
+  mounted() {
+    this.Item = this.item;
   },
 };
 </script>

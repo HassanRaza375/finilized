@@ -29,7 +29,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
+    <v-app-bar class="cd" :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
@@ -181,8 +181,11 @@ export default {
 };
 </script>
 <style scoped>
-.theme--light.v-app-bar.v-toolbar.v-sheet {
+/* .theme--light.v-app-bar.v-toolbar.v-sheet {
   background-color: #fff;
+} */
+.theme--light.v-app-bar.v-toolbar.v-sheet {
+  background: linear-gradient(135deg, #066AF3, #00ccff00) !important;
 }
 .bg {
   background-image: url("~/assets/images/img.jpg");

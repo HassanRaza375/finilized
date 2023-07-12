@@ -1,11 +1,11 @@
 export const state = () => ({
   LoadedPosts: [],
   TODOS: [],
+  gotdata: false,
   counter: 0,
 });
 export const mutations = {
   payload(state, load) {
-    debugger;
     state[load.Name] = load.Value;
   },
   setposts(state, posts) {

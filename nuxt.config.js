@@ -46,16 +46,17 @@ export default {
     theme: {
       themes: {
         light: {
-          primary: "#2C303B",
+          primary: "#ff5722",
           warning: "#F77F00",
           accent: "#006d77",
           info: "#3DDCCE",
           success: "#006400",
+          main: "#ff5722",
         },
       },
     },
   },
-
+  router: {},
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 };
