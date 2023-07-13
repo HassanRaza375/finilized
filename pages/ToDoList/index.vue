@@ -112,11 +112,13 @@ export default {
         e.ID = res.length;
         const arr = [e];
         const res1 = [...res, ...arr];
+        this.Itemd = {};
         localStorage.setItem("todos", JSON.stringify(res1));
       } else {
         e.Priority = Number(e.Priority) * 10;
         e.ID = 1;
         const arr = [e];
+        this.Itemd = {};
         localStorage.setItem("todos", JSON.stringify(arr));
       }
       //   this.Todos.push(e);
@@ -124,13 +126,7 @@ export default {
     },
     getTodos() {
       const arr = JSON.parse(localStorage.getItem("todos"));
-      if (!arr) return;
-      this.$store.dispatch("payload", {
-        Name: "TODOS",
-        Value: arr,
-      });
-      const td = [...this.$store.getters.LoadtDos];
-      this.Todos = td;
+      this.Todos = arr;
     },
     deletedata(item) {
       const res = JSON.parse(localStorage.getItem("todos"));
@@ -150,10 +146,10 @@ export default {
         const indx = res.findIndex((e) => e.ID === item.ID);
         res.splice(indx, 1);
         const newres = [...res, item];
-        debugger;
         localStorage.setItem("todos", JSON.stringify(newres));
       }
       this.OpenDialog = !this.OpenDialog;
+      this.Itemd = {};
       this.getTodos();
     },
   },

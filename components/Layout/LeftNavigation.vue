@@ -66,10 +66,14 @@ export default {
           title: "Todo list",
           to: "/ToDoList",
         },
+        {
+          icon: "mdi-cloud",
+          title: "Weather App",
+          to: "/WeatherApp",
+        },
       ],
     };
   },
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

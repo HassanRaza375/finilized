@@ -48,16 +48,9 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          x-small
-          depressed
-          color="success"
-          @click="$emit(item.ID ? 'saveedit' : 'getval', Item)"
-          >save</v-btn
-        >
-        <v-btn x-small depressed color="success" @click="$emit('close')"
-          >Close</v-btn
-        >
+        <v-btn x-small depressed color="success" @click="save">save</v-btn>
+        <v-btn x-small depressed color="success" @click="close">Close</v-btn>
+        <v-btn x-small depressed color="success" @click="clear">Clear</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -77,7 +70,22 @@ export default {
     };
   },
   mounted() {
+    console.log(this.item);
     this.Item = this.item;
+  },
+  methods: {
+    save() {
+      const data = this.Item;
+      this.Item = {};
+      this.$emit(this.item.ID ? "saveedit" : "getval", data);
+    },
+    clear() {
+      this.Item = {};
+    },
+    close() {
+      this.Item = {};
+      this.$emit("close");
+    },
   },
 };
 </script>
