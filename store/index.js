@@ -37,4 +37,7 @@ export const getters = {
   LoadedCounter(state) {
     return state.counter;
   },
+  LoadtDos(state) {
+    return state.TODOS;
+  },
 };

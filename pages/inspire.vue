@@ -6,7 +6,7 @@
         alt="Vuetify.js"
         class="mb-5"
       >
-      <blockquote class="blockquote">
+      <blockquote class="blockquote white--text">
         &#8220;First, solve the problem. Then, write the code.&#8221;
         <footer>
           <small>

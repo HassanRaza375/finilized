@@ -6,7 +6,7 @@
     transition="dialog-transition"
   >
     <v-card dense>
-      <v-card-title>{{ item ? "Edit Todo" : "New Todo" }} </v-card-title>
+      <v-card-title>{{ item.ID ? "Edit Todo" : "New Todo" }} </v-card-title>
       <v-card-text>
         <v-row dense>
           <v-col cols="6"
@@ -52,7 +52,7 @@
           x-small
           depressed
           color="success"
-          @click="$emit(item ? 'saveedit' : 'getval', Item)"
+          @click="$emit(item.ID ? 'saveedit' : 'getval', Item)"
           >save</v-btn
         >
         <v-btn x-small depressed color="success" @click="$emit('close')"
@@ -67,7 +67,7 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => {},
+      default: () => null,
     },
   },
   data() {

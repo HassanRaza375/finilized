@@ -91,13 +91,14 @@ export default {
         { text: "Is Active", value: "Active" },
         { text: "Actions", value: "actions" },
       ],
+      Todos: [],
     };
   },
-  computed: {
-    Todos() {
-      return this.$store.state.TODOS;
-    },
-  },
+  // computed: {
+  //   Todos() {
+  //     return this.$store.state.TODOS;
+  //   },
+  // },
   mounted() {
     this.getTodos();
   },
@@ -106,7 +107,7 @@ export default {
       console.log(e);
       this.OpenDialog = !this.OpenDialog;
       const res = JSON.parse(localStorage.getItem("todos"));
-      if (res.length > 0) {
+      if (res && res.length > 0) {
         e.Priority = Number(e.Priority) * 10;
         e.ID = res.length;
         const arr = [e];
@@ -128,6 +129,8 @@ export default {
         Name: "TODOS",
         Value: arr,
       });
+      const td = [...this.$store.getters.LoadtDos];
+      this.Todos = td;
     },
     deletedata(item) {
       const res = JSON.parse(localStorage.getItem("todos"));
@@ -150,6 +153,7 @@ export default {
         debugger;
         localStorage.setItem("todos", JSON.stringify(newres));
       }
+      this.OpenDialog = !this.OpenDialog;
       this.getTodos();
     },
   },
