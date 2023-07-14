@@ -27,7 +27,7 @@
                 </td>
                 <td align="right">
                   <span class="display-3" align="center"
-                    >{{ ((Item.main.temp || 0) - 273.15).toFixed(2) }}&deg;
+                    >{{ ((Item.main?.temp || 0) - 273.15).toFixed(2) }}&deg;
                     C</span
                   >
                 </td>
@@ -39,9 +39,9 @@
                   <strong>City: {{ Item.name }}</strong>
                 </td>
                 <td>
-                  windy
+                  {{ Item.weather[0]?.description }}
                   <v-icon>mdi-weather-windy</v-icon>
-                  <span>{{ Item.wind.speed }}</span>
+                  <span>{{ Item.wind?.speed }}</span>
                 </td>
                 <td>Rain Chances <v-icon>mdi-cloud-percent</v-icon></td>
               </tr>
