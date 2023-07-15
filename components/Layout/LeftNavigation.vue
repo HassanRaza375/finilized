@@ -32,6 +32,11 @@ export default {
           to: "/inspire",
         },
         {
+          icon: "mdi-calculator",
+          title: "Calculator",
+          to: "/Calculator",
+        },
+        {
           icon: "mdi-account-arrow-left-outline",
           title: "Admin",
           to: "/admin",

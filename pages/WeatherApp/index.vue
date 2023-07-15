@@ -39,7 +39,7 @@
                   <strong>City: {{ Item.name }}</strong>
                 </td>
                 <td>
-                  {{ Item.weather[0]?.description }}
+                  {{ Item.description }}
                   <v-icon>mdi-weather-windy</v-icon>
                   <span>{{ Item.wind?.speed }}</span>
                 </td>
@@ -64,11 +64,18 @@ export default {
   },
   methods: {
     async getDataFromApi() {
-      const res = await this.$axios.$get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${this.Item.Search},pak&appid=010f46f9c3cbd75a30e8753c15215533`
-      );
-      console.log(res);
-      this.Item = res;
+      try {
+        const res = await this.$axios.$get(
+          `http://api.openweathermap.org/data/2.5/weather?q=${this.Item.Search},pak&appid=010f46f9c3cbd75a30e8753c15215533`
+        );
+        console.log(res);
+        const res2 = JSON.parse(JSON.stringify(res));
+        this.Item = res;
+        this.Item.description = res2.weather[0].description;
+        console.log(this.Item);
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };
