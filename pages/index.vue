@@ -1,40 +1,77 @@
 <template>
-  <v-row>
-    <v-col cols="4" v-for="item in Items" :key="item.Id">
-      <v-card hover>
-        <v-img height="250" :src="require(`~/assets/images/${item.url}`)">
-          <v-card-title class="white--text">Tech Posts</v-card-title>
-          <v-card-text class="white--text">
+  <div>
+    <v-row class="justify-center">
+      <NewsHeadings @search="(v) => (type = v)" />
+      <v-col cols="4" v-for="item in Items" :key="item.Id">
+        <v-card hover>
+          <v-img
+            height="250"
+            :src="
+              item.urlToImage
+                ? item.urlToImage
+                : require(`~/assets/images/2.jpg`)
+            "
+          >
+            <v-card-title class="white--text">{{ item.title }}</v-card-title>
+          </v-img>
+          <v-card-text class="">
             <h5>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Recusandae aspernatur hic eligendi ut?
+              {{ (item.description || "no description").substring(-1, 200) }}...
             </h5>
+            <h6 align="right">
+              Author {{ item.author }}<br />
+              Published {{ item.publishedAt }}
+            </h6>
           </v-card-text>
-          <v-card-actions class="mt-10">
+          <v-card-actions class="">
             <v-spacer></v-spacer>
-            <v-btn depressed color="info">Favourite</v-btn>
-            <v-btn :to="`/posts/${item.Id}`" depressed color="primary"
-              >Visit</v-btn
-            >
+            <v-btn depressed small color="info">Favourite</v-btn>
+            <v-btn small :to="item.url" depressed color="primary">Visit</v-btn>
           </v-card-actions>
-        </v-img>
-      </v-card>
-    </v-col>
-  </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
 export default {
+  name:"NewsApi",
+  middleware:'validation',
   data() {
     return {
-      Items: [
-        { Id: "1", url: "g.jpg" },
-        { Id: "2", url: "2.jpg" },
-        { Id: "3", url: "3.jpg" },
-        { Id: "4", url: "4.jpg" },
-        { Id: "5", url: "1.JPG" },
-      ],
+      Items: [],
+      type: "tech",
+      Domain: "",
+      API_KEY: "f8fb09a71af442718207d5bc293c2429",
     };
+  },
+  computed: {
+    SearchType() {
+      return this.type;
+    },
+  },
+  watch: {
+    SearchType(newold, old) {
+      this.getNews();
+    },
+  },
+  mounted() {
+    this.getNews();
+  },
+  methods: {
+    async getNews(itm) {
+      if (itm) {
+        this.type = itm;
+      }
+      const res = await this.$axios.$get(
+        `https://newsapi.org/v2/everything?${
+          this.type ? "q=" + this.type : ""
+        }&apiKey=${this.API_KEY}`
+      );
+      this.Items = res.articles;
+      console.log(this.type);
+    },
   },
 };
 </script>

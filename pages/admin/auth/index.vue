@@ -14,11 +14,7 @@
         <v-form @submit.prevent="userLogin">
           <div class="text-center my-3">
             <v-avatar>
-              <v-img
-                src="~/assets/images/3.jpg"
-                alt="John"
-                size="78"
-              ></v-img>
+              <v-img src="~/assets/images/3.jpg" alt="John" size="78"></v-img>
             </v-avatar>
           </div>
           <v-card flat>
@@ -42,7 +38,7 @@
                     outlined
                     hide-details="auto"
                     :type="IsPassword ? 'password' : 'text'"
-                    :append-icon="IsPassword ? 'mdi-eye' : 'mdi-eye-check'"
+                    :append-icon="IsPassword ? 'mdi-eye-off' : 'mdi-eye'"
                     @click:append="IsPassword = !IsPassword"
                     :rule="[(v) => !!v || 'its required']"
                   ></v-text-field>
@@ -50,7 +46,10 @@
               </v-row>
             </v-card-text>
             <v-card-actions class="px-4">
-              <v-btn color="primary">Login</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn depressed small color="primary">Login</v-btn>
+              <v-btn depressed small color="info">SignUp</v-btn>
+              <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
         </v-form>

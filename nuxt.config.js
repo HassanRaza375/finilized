@@ -1,5 +1,3 @@
-import colors from "vuetify/es5/util/colors";
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   ssr: false,
@@ -56,7 +54,9 @@ export default {
       },
     },
   },
-  router: {},
+  router: {
+    // middleware: ["validation"],
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 };

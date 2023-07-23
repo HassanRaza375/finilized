@@ -27,6 +27,11 @@ export default {
           to: "/",
         },
         {
+          icon: "mdi-chart-arc",
+          title: "Charts",
+          to: "/charts",
+        },
+        {
           icon: "mdi-apps",
           title: "Inspire",
           to: "/inspire",
