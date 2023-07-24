@@ -23,10 +23,17 @@ export default {
   data() {
     return {
       CreatNew: false,
-      Items: {},
+      Item: {},
     };
   },
+  mounted() {
+    this.GetPosts();
+  },
   methods: {
+    async GetPosts() {
+      const res = await this.$axios.$get("/Post");
+      this.$store.dispatch("setposts", res.Response.Posts);
+    },
     EditPosts(item) {
       this.CreatNew = true;
       this.Item = item;

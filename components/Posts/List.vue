@@ -8,9 +8,10 @@
         </v-card-title>
         <v-card-text>
           <h4>
-            {{ item.Content }}
+            {{ item.Description }}
           </h4>
-          <h6 align="right">~{{ item.writtenBy }}</h6>
+          <h6 align="right">~{{ item.Author }}</h6>
+          <h6 align="right">{{ item.Date }}</h6>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>

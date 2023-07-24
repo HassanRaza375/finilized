@@ -29,8 +29,17 @@
           </v-col>
           <v-col cols="6">
             <v-text-field
-              v-model="Item.writtenBy"
-              label="Type"
+              v-model="Item.Author"
+              label="Author"
+              outlined
+              dense
+              hide-details="auto"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="6">
+            <v-text-field
+              v-model="Item.image"
+              label="Image"
               outlined
               dense
               hide-details="auto"
@@ -38,7 +47,7 @@
           </v-col>
           <v-col cols="12">
             <v-textarea
-              v-model="Item.Content"
+              v-model="Item.Description"
               label="Content"
               rows="1"
               textarea
@@ -49,7 +58,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn depressed @click="$emit('close')">Cancel</v-btn>
-        <v-btn depressed color="warning">Save</v-btn>
+        <v-btn depressed color="warning" @click="SaveItem">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -71,6 +80,20 @@ export default {
   },
   mounted() {
     this.item ? (this.Item = this.item) : {};
+  },
+  methods: {
+    async SaveItem() {
+      const Data = {
+        Title: this.Item.Title,
+        Type: this.Item.Type,
+        image: this.Item.image,
+        Author: this.Item.Author,
+        Description: this.Item.Description,
+      };
+      const res = await this.$axios.$post("/Post", Data);
+      console.log(res);
+      this.$emit("close");
+    },
   },
 };
 </script>
