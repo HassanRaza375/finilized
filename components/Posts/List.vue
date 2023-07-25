@@ -26,7 +26,9 @@
           >
 
           <v-btn depressed small color="error">Delete</v-btn>
-          <v-btn :to="'/posts/1'" small depressed color="info">Open</v-btn>
+          <v-btn :to="`/posts/${item._id}`" small depressed color="info"
+            >Open</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-col>
