@@ -53,6 +53,9 @@
               textarea
             ></v-textarea>
           </v-col>
+          <v-col cols="12">
+            <input type="file" ref="files" @change="fileupload(e)" />
+          </v-col>
         </v-row>
       </v-card-text>
       <v-card-actions>
@@ -82,6 +85,11 @@ export default {
     this.item ? (this.Item = this.item) : {};
   },
   methods: {
+    fileupload(e) {
+      const fil = this.$refs.files.files[0];
+      console.log(fil);
+      debugger;
+    },
     async SaveItem() {
       const Data = {
         Title: this.Item.Title,
