@@ -8,6 +8,9 @@
       dark
       app
     >
+      <div class="pa-2 text-center">
+        <img width="90%" src="~/assets/images/g.jpg" alt="logo" />
+      </div>
       <LayoutLeftNavigation />
     </v-navigation-drawer>
     <LayoutTopNavbar @close="drawer = !drawer" />

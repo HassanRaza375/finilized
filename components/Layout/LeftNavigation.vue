@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list class="py-0">
     <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact
       ><v-tooltip color="dark" right>
         <template v-slot:activator="{ on, attrs }">

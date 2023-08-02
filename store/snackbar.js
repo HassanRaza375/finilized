@@ -6,8 +6,7 @@ export const mutations = {
     state[payload.type] = state.snackbars.concat(payload);
   },
   HidePayload(state, payload) {
-    state.snackbars[payload || 0] = state.snackbars[payload || 0].pop();
-    debugger;
+    state.snackbars = [];
   },
 };
 export const actions = {
@@ -16,6 +15,6 @@ export const actions = {
     context.commit("SetSnackbar", payload);
     setTimeout(() => {
       context.commit("HidePayload");
-    }, 3000);
+    }, 5000);
   },
 };
