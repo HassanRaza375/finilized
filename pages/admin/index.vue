@@ -9,10 +9,11 @@
         >
       </v-card-actions>
     </v-card>
-    <PostsList :admin="true" @editdata="EditPosts" />
+    <PostsList @editdata="EditPosts" :Is_Admin="true" />
     <PostsAddNewPosts
       v-if="CreatNew"
       :item="Item"
+      :Is_Admin="true"
       @close="CreatNew = !CreatNew"
     />
   </div>
@@ -31,12 +32,6 @@ export default {
   },
   methods: {
     async GetPosts() {
-      this.$store.dispatch("snackbar/CallSnackbar", {
-        type: "snackbars",
-        text: "ok",
-        color: "error",
-        hide: true,
-      });
       const res = await this.$axios.$get("/Post");
       this.$store.dispatch("setposts", res.Response.Posts);
     },

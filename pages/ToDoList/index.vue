@@ -27,6 +27,7 @@
           <v-col cols="12">
             <v-data-table
               dense
+              dark
               :headers="headers"
               :items="Todos"
               :search="search"
@@ -125,7 +126,7 @@ export default {
       this.getTodos();
     },
     getTodos() {
-      const arr = JSON.parse(localStorage.getItem("todos"));
+      const arr = JSON.parse(localStorage.getItem("todos")) || [];
       this.Todos = arr;
     },
     deletedata(item) {
@@ -155,11 +156,15 @@ export default {
   },
 };
 </script>
-<style scoped>
-.c-table thead {
+<style lang="scss" scoped>
+::v-deep .v-data-table-header {
   background-color: #066af3 !important;
+  color: #fff !important;
+  tr th {
+    padding: 10px 10px !important;
+  }
 }
-.theme--light.v-input {
+::v-deep .theme--light.v-input {
   color: #fff !important;
 }
 .custom-text-color input {

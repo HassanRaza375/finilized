@@ -99,6 +99,10 @@ export default {
         Description: this.Item.Description,
       };
       const res = await this.$axios.$post("/Post", Data);
+      if (res._id) {
+        const res2 = await this.$axios.$get("/Post");
+        this.$store.dispatch("setposts", res2.Response.Posts);
+      }
       console.log(res);
       this.$emit("close");
     },

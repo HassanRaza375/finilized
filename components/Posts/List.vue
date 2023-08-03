@@ -1,15 +1,17 @@
 <template>
   <v-row dense>
-    <v-col cols="4" v-for="item in getposts" :key="item.Id">
-      <v-card hover>
-        <v-card-title primary-title>
-          <div>{{ item.Title }}</div>
-          <h5>{{ item.Type }}</h5>
+    <v-col cols="4" v-for="(item, i) in getposts" :key="item.Id">
+      <v-card hover :color="i % 2 === 0 ? '#1F7087' : '#952175'" dark>
+        <v-card-title>
+          <h5>{{ item.Title }}</h5>
         </v-card-title>
         <v-card-text>
-          <h4>
+          <h5>
+            Type: <v-chip color="info" small>{{ item.Type }}</v-chip>
+          </h5>
+          <h5>
             {{ item.Description }}
-          </h4>
+          </h5>
           <h6 align="right">~{{ item.Author }}</h6>
           <h6 align="right">{{ item.Date }}</h6>
         </v-card-text>
@@ -17,7 +19,6 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            v-if="admin"
             depressed
             small
             color="warning"
@@ -25,7 +26,14 @@
             >Edit</v-btn
           >
 
-          <v-btn depressed small color="error">Delete</v-btn>
+          <v-btn
+            v-if="Is_Admin"
+            depressed
+            small
+            color="error"
+            @click="DeletePost(item._id)"
+            >Delete</v-btn
+          >
           <v-btn :to="`/posts/${item._id}`" small depressed color="info"
             >Open</v-btn
           >
@@ -38,11 +46,35 @@
 <script>
 export default {
   props: {
-    admin: { type: Boolean, default: false },
+    Is_Admin: { type: Boolean, default: false },
   },
   computed: {
     getposts() {
       return this.$store.getters.LoadedPosts;
+    },
+  },
+  methods: {
+    async DeletePost(ID) {
+      try {
+        const res = await this.$axios.$delete(`/Post/${ID}`);
+        this.$store.dispatch("snackbar/CallSnackbar", {
+          type: "snackbars",
+          text: res.message.acknowledged ? "Deleted" : "Not Deleted",
+          color: "error",
+          hide: true,
+        });
+        if (res) {
+          const resp = await this.$axios.$get("/Post");
+          this.$store.dispatch("setposts", resp.Response.Posts);
+        }
+      } catch (err) {
+        this.$store.dispatch("snackbar/CallSnackbar", {
+          type: "snackbars",
+          text: err,
+          color: "error",
+          hide: true,
+        });
+      }
     },
   },
 };
