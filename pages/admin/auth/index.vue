@@ -76,14 +76,23 @@ export default {
     };
   },
   methods: {
-    Login() {
-      const data = {
-        Email: this.Item.Email,
-        Password: this.Item.Password,
-      };
-      const res = this.$axios.$post("User/SignUp", data);
-      debugger;
-      console.log(res);
+    async Login() {
+      try {
+        const data = {
+          Email: this.Item.Email,
+          Password: this.Item.Password,
+        };
+        const res = await this.$axios.$post("User/Login", data);
+        debugger;
+        console.log(res);
+      } catch (err) {
+        this.$store.dispatch("snackbar/CallSnackbar", {
+          type: "snackbars",
+          text: err,
+          color: "success",
+          Showing: true,
+        });
+      }
     },
     async SignUp() {
       try {
